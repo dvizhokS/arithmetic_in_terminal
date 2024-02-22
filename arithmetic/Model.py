@@ -75,8 +75,6 @@ class Model:
             self.cur.execute(sql)
             self.con.commit()
 
-    # def update_data(self, **kwargs):
-
     def update_data(self, **kwargs):
         self.update_values_prepare(**kwargs)
         sql = ("UPDATE {table} SET {values} Where {where}".
@@ -117,4 +115,3 @@ class Model:
                 v = "'{}'".format(v)
             key_value.append("{} = {}".format(k, v))
         return key_value
-

@@ -204,8 +204,6 @@ class Arithmetic:
         while self.example_to_win > self.num_example:
             self.print_example()
             ans = self.get_write_ans()
-            # print(ans)
             self.check_example(ans)
-            # print(arithmetic.get_ans())
 
         self.write_total_ans()
