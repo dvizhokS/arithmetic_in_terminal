@@ -10,8 +10,8 @@ if __name__ == "__main__":
     arithmetic.set_max_y(config["max_y"])
     arithmetic.set_signs(config["signs"])
     arithmetic.set_smarty(config["is_smarty"])
+    arithmetic.set_write_info_example(config["info_example"])
     arithmetic.set_example_to_win(config["example_to_win"])
-    arithmetic.set_write_info_example(True)
 
     arithmetic.run()
 
