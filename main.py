@@ -15,7 +15,4 @@ if __name__ == "__main__":
 
     arithmetic.run()
 
-
-
-
-
+    input("\n\tPres Enter to exit!")
