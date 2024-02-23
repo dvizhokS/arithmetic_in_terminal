@@ -50,21 +50,29 @@ class Model:
         self.is_example_exist = True
         return example
 
-    def get_example_not_solved(self):
-        sql = "SELECT * from {} WHERE {} LIMIT 1".format(self.table_name, "status = 0")
+    def get_example_not_solved(self, signs):
+        signs_string = self.get_signs_prepare(signs)
+        where = "status = 0 AND sign IN ({}) ".format(signs_string)
+        sql = "SELECT * from {} WHERE {} LIMIT 1".format(self.table_name, where)
         res = self.cur.execute(sql).fetchone()
         if res is None:
             return False
         self.where_prepare(id=res['id'])
         return res
 
-    def get_slow_example(self):
-        sql = "SELECT * from {} Order By times DESC LIMIT 1".format(self.table_name)
+    def get_slow_example(self, signs):
+        signs_string = self.get_signs_prepare(signs)
+        where = "sign IN ({})".format(signs_string)
+        sql = "SELECT * from {} WHERE {} Order By times DESC LIMIT 1".format(self.table_name, where)
         res = self.cur.execute(sql).fetchone()
         if res is None:
             return False
         self.where_prepare(id=res['id'])
         return res
+
+    def get_signs_prepare(self, signs):
+        signs_string = ", ".join(["'" + el + "'" for el in signs])
+        return signs_string
 
     def insert_data(self, **kwargs):
         example = self.get_example(**kwargs)

@@ -152,10 +152,10 @@ class Arithmetic:
         return self.string_example
 
     def get_example_from_db(self):
-        example = self.db.get_example_not_solved()
+        example = self.db.get_example_not_solved(self.signs)
 
         if not example:
-            example = self.db.get_slow_example()
+            example = self.db.get_slow_example(self.signs)
             if not example:
                 return False
 
